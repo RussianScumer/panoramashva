@@ -1,0 +1,7 @@
+path: C:/Users/New/Desktop/photos
+train: C:/Users/New/Desktop/photos/images
+val: C:/Users/New/Desktop/photos/images
+
+
+names:
+  0: objshov

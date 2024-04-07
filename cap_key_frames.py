@@ -1,3 +1,5 @@
+import os
+
 import cv2
 import numpy as np
 import argparse
@@ -5,12 +7,12 @@ import argparse
 
 def main(videofile):
     # Construct VideoCapture object to get frame-by-frame stream
-    global image
     vid_cap = cv2.VideoCapture(videofile)
 
     # SIFT descriptors are utilized to describe the overlapping between the
     # current frame and its neighbor
-    sift = cv2.AKAZE.create()
+    sift = cv2.SIFT.create()
+
     # The first key frame (frame0.jpg) is selected by default
     success, last = vid_cap.read()
     cv2.imwrite('key_frames/frame0.jpg', last)
@@ -19,8 +21,8 @@ def main(videofile):
     frame_num = 1
 
     w = int(last.shape[1] * 2 / 3)  # the region to detect matching points
-    stride = 40        # stride for accelerating capturing
-    min_match_num = 100  # minimum number of matches required (to stitch well)
+    stride = 40          # stride for accelerating capturing
+    min_match_num = 20  # minimum number of matches required (to stitch well)
     max_match_num = 600  # maximum number of matches (to avoid redundant frames)
 
     while success:
@@ -30,7 +32,7 @@ def main(videofile):
             kp2, des2 = sift.detectAndCompute(image[:, :w], None)
 
             # Use the Brute-Force matcher to obtain matches
-            bf = cv2.BFMatcher(normType=cv2.NORM_L2)  # Using Euclidean distance
+            bf = cv2.BFMatcher()  # Using Euclidean distance
             matches = bf.knnMatch(des1, des2, k=2)
 
             # Define Valid Match: whose distance is less than match_ratio times
@@ -57,8 +59,8 @@ def main(videofile):
 
                 # Compute the Homography matrix
                 _, mask = cv2.findHomography(img1_pts, img2_pts,
-                                             cv2.RANSAC, 5.0)
-                #print(np.count_nonzero(mask))
+                                             cv2.RANSAC, 10.0)
+
                 if min_match_num < np.count_nonzero(mask) < max_match_num:
                     # Save key frame as JPG file
                     last = image
@@ -69,10 +71,25 @@ def main(videofile):
         count += 1
 
 
+def clear_folder(folder_path):
+    for file_name in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file_name)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+            # если вы хотите удалить также папки, раскомментируйте следующую строку
+            # elif os.path.isdir(file_path): shutil.rmtree(file_path)
+        except Exception as e:
+            print(e)
+
+
+
+
 if __name__ == "__main__":
     #parser = argparse.ArgumentParser()
     #parser.add_argument('file', nargs='?', default='360video.mp4',
                        # help="path of the video file (default: 360video.mp4)")
     #args = parser.parse_args()
-
-    main('videotest2.mp4')
+    folder_to_clear = 'путь_к_папке_для_очистки'
+    clear_folder("key_frames")
+    main('videotest.mp4')
