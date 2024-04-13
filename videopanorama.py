@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from random import randrange
 import time
 
-cp = cv2.VideoCapture('sample.mp4')
+cp = cv2.VideoCapture('5miin.mp4')
 
 n_frames = int(cp.get(cv2.CAP_PROP_FRAME_COUNT))
 print("N_frames: ", n_frames)
