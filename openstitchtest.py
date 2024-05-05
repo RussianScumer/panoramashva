@@ -6,8 +6,8 @@ from stitching import AffineStitcher
 
 settings = {"detector": "sift", "confidence_threshold": 0.2, "try_use_gpu": True}
 stitcher = Stitcher(**settings)
-settingsAffine = {"confidence_threshold": 0.2, "try_use_gpu": True}
-stitcherAffine = AffineStitcher()
+settingsAffine = {"detector": "akaze", "confidence_threshold": 0.87, "try_use_gpu": True}
+stitcherAffine = AffineStitcher(**settingsAffine)
 '''
 imagelast = 0
 vidcap = cv2.VideoCapture('videotest7.mp4')
@@ -54,8 +54,8 @@ directory_path = 'key_frames'
 all_files = get_all_file_names(directory_path)
 all_files = sorted(all_files, key=lambda x: int(x.split('frame')[-1].split('.')[0]))
 print(all_files)
-#panorama = stitcher.stitch(all_files)
-#panorama = stitcher.stitch(['key_frames/frame0.jpg', 'key_frames/frame1.jpg'])
+# panorama = stitcher.stitch(all_files)
+# panorama = stitcher.stitch(['key_frames/frame0.jpg', 'key_frames/frame1.jpg'])
 panorama = stitcherAffine.stitch(all_files)
 # panorama = cv2.resize(panorama, dim, interpolation=cv2.INTER_AREA)
 cv2.imshow('Panorama', panorama)

@@ -11,18 +11,22 @@ def main(videofile):
 
     # SIFT descriptors are utilized to describe the overlapping between the
     # current frame and its neighbor
-    sift = cv2.SIFT.create()
+    sift = cv2.AKAZE.create()
 
     # The first key frame (frame0.jpg) is selected by default
     success, last = vid_cap.read()
+    w = last.shape[1]
+    h = last.shape[0]
+    dim = (int(w * 3 / 10), int(h * 3 / 10))
+    last = cv2.resize(last, dim, interpolation=cv2.INTER_AREA)
     cv2.imwrite('key_frames/frame0.jpg', last)
     print("Captured frame0.jpg")
     count = 1
     frame_num = 1
 
-    w = int(last.shape[1] * 2 / 3)  # the region to detect matching points
-    stride = 40          # stride for accelerating capturing
-    min_match_num = 20  # minimum number of matches required (to stitch well)
+    w = int(last.shape[1] * 3 / 3)  # the region to detect matching points
+    stride = 10         # stride for accelerating capturing
+    min_match_num = 2# minimum number of matches required (to stitch well)
     max_match_num = 600  # maximum number of matches (to avoid redundant frames)
 
     while success:
@@ -32,7 +36,7 @@ def main(videofile):
             kp2, des2 = sift.detectAndCompute(image[:, :w], None)
 
             # Use the Brute-Force matcher to obtain matches
-            bf = cv2.BFMatcher()  # Using Euclidean distance
+            bf = cv2.BFMatcher(normType=cv2.NORM_L2)  # Using Euclidean distance
             matches = bf.knnMatch(des1, des2, k=2)
 
             # Define Valid Match: whose distance is less than match_ratio times
@@ -65,6 +69,10 @@ def main(videofile):
                     # Save key frame as JPG file
                     last = image
                     print("Captured frame{}.jpg".format(frame_num))
+                    w = last.shape[1]
+                    h = last.shape[0]
+                    dim = (int(w * 3 / 10), int(h * 3 / 10))
+                    last = cv2.resize(last, dim, interpolation=cv2.INTER_AREA)
                     cv2.imwrite('key_frames/frame%d.jpg' % frame_num, last)
                     frame_num += 1
         success, image = vid_cap.read()
@@ -90,6 +98,6 @@ if __name__ == "__main__":
     #parser.add_argument('file', nargs='?', default='360video.mp4',
                        # help="path of the video file (default: 360video.mp4)")
     #args = parser.parse_args()
-    folder_to_clear = 'путь_к_папке_для_очистки'
-    clear_folder("key_frames")
-    main('videotest.mp4')
+    #folder_to_clear = 'путь_к_папке_для_очистки'
+    #clear_folder("key_frames")
+    main('videotest5.mp4')
