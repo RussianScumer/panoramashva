@@ -11,7 +11,7 @@ def main(videofile):
 
     # SIFT descriptors are utilized to describe the overlapping between the
     # current frame and its neighbor
-    sift = cv2.AKAZE.create()
+    sift = cv2.SIFT.create()
 
     # The first key frame (frame0.jpg) is selected by default
     success, last = vid_cap.read()
@@ -100,4 +100,4 @@ if __name__ == "__main__":
     #args = parser.parse_args()
     #folder_to_clear = 'путь_к_папке_для_очистки'
     #clear_folder("key_frames")
-    main('videotest5.mp4')
+    main('5miin.mp4')
