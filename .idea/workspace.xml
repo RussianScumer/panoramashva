@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f148632c-263d-4a13-aae5-1fac4e44c3d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f148632c-263d-4a13-aae5-1fac4e44c3d8" name="Changes" comment="2/3 cropImage">
+      <change afterPath="$PROJECT_DIR$/StichingAndCombined/CutImage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StichingAndCombined/StichImageVertical.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StichingAndCombined/StichingImages.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/StichingAndCombined/mainZ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/videopanorama.py" beforeDir="false" afterPath="$PROJECT_DIR$/videopanorama.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BlaDickJ&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RussianScumer/panoramashva.git&quot;,
+    &quot;accountId&quot;: &quot;3bad8031-c2bc-4e11-8a57-bb30bed934ec&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -37,37 +52,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.11111.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Video_To_image.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cap_key_frames.executor&quot;: &quot;Run&quot;,
-    &quot;Python.changedir.executor&quot;: &quot;Run&quot;,
-    &quot;Python.decimate.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_pano.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hueta.executor&quot;: &quot;Run&quot;,
-    &quot;Python.openstitchtest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.panorama.executor&quot;: &quot;Run&quot;,
-    &quot;Python.smth.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stitch_akaze.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stitcher.executor&quot;: &quot;Run&quot;,
-    &quot;Python.videopanorama.executor&quot;: &quot;Run&quot;,
-    &quot;Python.yolotrain.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/New/panoramashva1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.11111.executor": "Run",
+    "Python.Video_To_image.executor": "Run",
+    "Python.cap_key_frames.executor": "Run",
+    "Python.changedir.executor": "Run",
+    "Python.decimate.executor": "Run",
+    "Python.generate_pano.executor": "Run",
+    "Python.hueta.executor": "Run",
+    "Python.openstitchtest.executor": "Run",
+    "Python.panorama.executor": "Run",
+    "Python.smth.executor": "Run",
+    "Python.stitch_akaze.executor": "Run",
+    "Python.stitcher.executor": "Run",
+    "Python.videopanorama.executor": "Run",
+    "Python.yolotrain.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/OSPanel/domains/New/panoramashva/StichingAndCombined",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\New\panoramashva\StichingAndCombined" />
       <recent name="C:\OSPanel\domains\New\panoramashva" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -174,10 +190,24 @@
       <workItem from="1711919551971" duration="2652000" />
       <workItem from="1712493498232" duration="18196000" />
     </task>
+    <task id="LOCAL-00001" summary="2/3 cropImage">
+      <option name="closed" value="true" />
+      <created>1713021251111</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713021251111</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="stitch done" />
+    <MESSAGE value="2/3 cropImage" />
+    <option name="LAST_COMMIT_MESSAGE" value="2/3 cropImage" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
