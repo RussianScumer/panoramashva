@@ -36,6 +36,6 @@ def split_and_save_all_images(input_folder, output_folder):
 
 
 # Пример использования
-input_folder = "1"
+input_folder = "images6000"
 output_folder = "2"
 split_and_save_all_images(input_folder, output_folder)

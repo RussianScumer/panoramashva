@@ -86,7 +86,7 @@ _max_y-images[0].shape[0])
       else:
           transformations[1] = transformations[0].dot(transformations[1])
      ###### show
-        # temp = imutils.resize(image1, width=min(800, image1.shape[1]))
+        # temp = imutils.resize(image1, width=min(800, image1.shape[images6000]))
        # cv2.imshow('image1', temp)
       # cv2.waitKey(0)
      ###### translate image
@@ -102,7 +102,7 @@ min_y, 0)], [0, 0, 1]])
       images[0], transformations[0] = images[1], transformations[1]
       # image0 = image1
       if pausecount % 100 == 0:
-        #temp = imutils.resize(result, height=min(800, result.shape[1]))
+        #temp = imutils.resize(result, height=min(800, result.shape[images6000]))
         #cv2.imshow(str(pausecount), temp)
         #cv2.waitKey(0)
          cv2.imwrite('results/final_%s.jpg' % pausecount, result)

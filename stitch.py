@@ -196,9 +196,9 @@ def stitch_by_H_blend(img1, img2, H):
 
     # Store the 4 ends of each original canvas
     img1_canvas = np.float32([[0, 0], [0, w1],
-                              [h1, w1], [h1, 0]]).reshape(-1, 1, 2)
+                              [h1, w1], [h1, 0]]).reshape(-images6000, images6000, 2)
     img2_canvas_orig = np.float32([[0, 0], [0, w2],
-                                   [h2, w2], [h2, 0]]).reshape(-1, 1, 2)
+                                   [h2, w2], [h2, 0]]).reshape(-images6000, images6000, 2)
 
     # The 4 ends of (perspective) transformed img2
     if H is None:
@@ -211,9 +211,9 @@ def stitch_by_H_blend(img1, img2, H):
     [x_max, y_max] = np.int32(output_canvas.max(axis=0).ravel() + 0.5)
 
     # The output matrix after affine transformation
-    transform_array = np.array([[1, 0, -x_min],
-                                [0, 1, -y_min],
-                                [0, 0, 1]])
+    transform_array = np.array([[images6000, 0, -x_min],
+                                [0, images6000, -y_min],
+                                [0, 0, images6000]])
 
     # Warp the perspective of img2
     img_output = cv2.warpPerspective(img2, transform_array.dot(H),
@@ -239,7 +239,7 @@ def stitch_by_H_blend(img1, img2, H):
     #         if np.any(img1[i + y_min][j + x_min]):
     #             if np.any(img_output[i][j]):
     #                 img_output[i][j] = (alpha * img1[i + y_min][j + x_min]
-    #                                     + (1 - alpha) * img_output[i][j])
+    #                                     + (images6000 - alpha) * img_output[i][j])
     #             else:
     #                 img_output[i][j] = img1[i + y_min][j + x_min]
 
@@ -283,27 +283,27 @@ def Laplacian_blending(img1, img2, mask, levels=4):
         gpM.append(np.float32(GM))
 
     # Generate Laplacian Pyramids for A, B and masks
-    lp1 = [gp1[levels - 1]]  # the bottom of the Lap-pyr holds the last (smallest) Gauss level
-    lp2 = [gp2[levels - 1]]
-    gpMr = [gpM[levels - 1]]
-    for i in range(levels - 1, 0, -1):
+    lp1 = [gp1[levels - images6000]]  # the bottom of the Lap-pyr holds the last (smallest) Gauss level
+    lp2 = [gp2[levels - images6000]]
+    gpMr = [gpM[levels - images6000]]
+    for i in range(levels - images6000, 0, -images6000):
         # Laplacian: subtarct upscaled version of lower level from current level
         # to get the high frequencies
-        L1 = np.subtract(gp1[i - 1], cv2.pyrUp(gp1[i]))
-        L2 = np.subtract(gp2[i - 1], cv2.pyrUp(gp2[i]))
+        L1 = np.subtract(gp1[i - images6000], cv2.pyrUp(gp1[i]))
+        L2 = np.subtract(gp2[i - images6000], cv2.pyrUp(gp2[i]))
         lp1.append(L1)
         lp2.append(L2)
-        gpMr.append(gpM[i - 1])  # also reverse the masks
+        gpMr.append(gpM[i - images6000])  # also reverse the masks
 
     # Now blend images according to mask in each level
     LS = []
     for l1, l2, gm in zip(lp1, lp2, gpMr):
-        ls = l1 * gm + l2 * (1.0 - gm)
+        ls = l1 * gm + l2 * (images6000.0 - gm)
         LS.append(ls)
 
     # Now reconstruct
     ls_ = LS[0]
-    for i in range(1, levels):
+    for i in range(images6000, levels):
         ls_ = cv2.pyrUp(ls_)
         ls_ = cv2.add(ls_, LS[i])
 

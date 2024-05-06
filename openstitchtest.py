@@ -22,7 +22,7 @@ images.append(image)
 while success:
     # cv2.imwrite("frame%d.jpg" % count, image)  # save frame as JPEG file
     success, image = vidcap.read()
-    framecount += 1
+    framecount += images6000
     if image is not None:
         imagelast = image
     if framecount == videothresh:
@@ -34,7 +34,7 @@ while success:
         #image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
         images.append(image)
     print('Read a new frame: ', success)
-    count += 1
+    count += images6000
 #print(imagelast)
 imagelast = cv2.resize(imagelast, dim, interpolation=cv2.INTER_AREA)
 images.append(imagelast)
