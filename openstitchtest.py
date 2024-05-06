@@ -6,7 +6,7 @@ from stitching import AffineStitcher
 
 settings = {"detector": "sift", "confidence_threshold": 0.2, "try_use_gpu": True}
 stitcher = Stitcher(**settings)
-settingsAffine = {"detector": "akaze", "confidence_threshold": 0.87, "try_use_gpu": True}
+settingsAffine = {"detector": "sift", "confidence_threshold": 0.9, "try_use_gpu": True}
 stitcherAffine = AffineStitcher(**settingsAffine)
 '''
 imagelast = 0
@@ -53,12 +53,30 @@ def get_all_file_names(directory):
 directory_path = 'key_frames'
 all_files = get_all_file_names(directory_path)
 all_files = sorted(all_files, key=lambda x: int(x.split('frame')[-1].split('.')[0]))
-print(all_files)
-# panorama = stitcher.stitch(all_files)
-# panorama = stitcher.stitch(['key_frames/frame0.jpg', 'key_frames/frame1.jpg'])
-panorama = stitcherAffine.stitch(all_files)
+all_files = all_files[0:36]
+all_files_reduced = [all_files[0]]
+count = 0
+i = 0
+for img in all_files:
+    count = count + 1
+    i = i+1
+    if i < 10:
+        all_files_reduced.append(img)
+    elif i == 10:
+        panorama_part = stitcherAffine.stitch(all_files_reduced)
+        cv2.imwrite('panoramaparts/frame%d.jpg' % count, panorama_part)
+        all_files_reduced.clear()
+        i = 0
+        continue
+panorama_part = stitcherAffine.stitch(all_files_reduced)
+count = count + 1
+cv2.imwrite('panoramaparts/frame%d.jpg' % count, panorama_part)
+'''print(all_files_reduced)
+#panorama = stitcher.stitch(all_files_reduced)
+#panorama = stitcher.stitch(['key_frames/frame0.jpg', 'key_frames/frame1.jpg'])
+panorama = stitcherAffine.stitch(all_files_reduced)
 # panorama = cv2.resize(panorama, dim, interpolation=cv2.INTER_AREA)
 cv2.imshow('Panorama', panorama)
 cv2.imwrite('panorama.jpg', panorama)
 cv2.waitKey()
-cv2.destroyAllWindows()
+cv2.destroyAllWindows() '''
