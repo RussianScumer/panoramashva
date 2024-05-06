@@ -25,8 +25,8 @@ def main(videofile):
     frame_num = 1
 
     w = int(last.shape[1] * 3 / 3)  # the region to detect matching points
-    stride = 40         # stride for accelerating capturing
-    min_match_num = 5# minimum number of matches required (to stitch well)
+    stride = 30         # stride for accelerating capturing
+    min_match_num = 2# minimum number of matches required (to stitch well)
     max_match_num = 1000  # maximum number of matches (to avoid redundant frames)
 
     while success:
@@ -100,4 +100,4 @@ if __name__ == "__main__":
     #args = parser.parse_args()
     #folder_to_clear = 'путь_к_папке_для_очистки'
     #clear_folder("key_frames")
-    main('videotest.mp4')
+    main('obrab.mp4')

@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f148632c-263d-4a13-aae5-1fac4e44c3d8" name="Changes" comment="2/3 cropImage">
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Panorama.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Panorama.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StichingAndCombined/CopyEvryXimage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StichingAndCombined/CopyEvryXimage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StichingAndCombined/getimage.py" beforeDir="false" afterPath="$PROJECT_DIR$/StichingAndCombined/getimage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/StichingAndCombined/mainZV.py" beforeDir="false" afterPath="$PROJECT_DIR$/StichingAndCombined/mainZV.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cap_key_frames.py" beforeDir="false" afterPath="$PROJECT_DIR$/cap_key_frames.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/openstitchtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/openstitchtest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/panoramaparts/frame10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/panoramaparts/frame10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/panoramaparts/frame20.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/panoramaparts/frame20.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/panoramaparts/frame30.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/panoramaparts/frame30.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/panoramaparts/frame37.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,36 +59,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.11111.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Video_To_image.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cap_key_frames.executor&quot;: &quot;Run&quot;,
-    &quot;Python.changedir.executor&quot;: &quot;Run&quot;,
-    &quot;Python.decimate.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_pano.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hueta.executor&quot;: &quot;Run&quot;,
-    &quot;Python.mainZ.executor&quot;: &quot;Run&quot;,
-    &quot;Python.openstitchtest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.panorama.executor&quot;: &quot;Run&quot;,
-    &quot;Python.smth.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stitch_akaze.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stitcher.executor&quot;: &quot;Run&quot;,
-    &quot;Python.videopanorama.executor&quot;: &quot;Run&quot;,
-    &quot;Python.yolotrain.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/New/panoramashva/StichingAndCombined&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.11111.executor": "Run",
+    "Python.Video_To_image.executor": "Run",
+    "Python.cap_key_frames.executor": "Run",
+    "Python.changedir.executor": "Run",
+    "Python.decimate.executor": "Run",
+    "Python.generate_pano.executor": "Run",
+    "Python.getimage.executor": "Run",
+    "Python.hueta.executor": "Run",
+    "Python.mainZ.executor": "Run",
+    "Python.mainZV.executor": "Run",
+    "Python.openstitchtest.executor": "Run",
+    "Python.panorama.executor": "Run",
+    "Python.smth.executor": "Run",
+    "Python.stitch_akaze.executor": "Run",
+    "Python.stitcher.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test2.executor": "Run",
+    "Python.videopanorama.executor": "Run",
+    "Python.yolotrain.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/OSPanel/domains/New/panoramashva/StichingAndCombined",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\New\panoramashva\StichingAndCombined" />
@@ -170,7 +183,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-0509580d9d50-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.14494.241" />
+        <option value="bundled-python-sdk-09665e90c3a7-b11f5e8da5ad-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-233.15026.15" />
       </set>
     </attachedChunks>
   </component>
@@ -188,6 +201,7 @@
       <workItem from="1711919076097" duration="465000" />
       <workItem from="1711919551971" duration="2652000" />
       <workItem from="1712493498232" duration="18196000" />
+      <workItem from="1715022911106" duration="4925000" />
     </task>
     <task id="LOCAL-00001" summary="2/3 cropImage">
       <option name="closed" value="true" />
@@ -218,17 +232,21 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/panoramashva$changedir.coverage" NAME="changedir Coverage Results" MODIFIED="1712516901581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$videopanorama.coverage" NAME="videopanorama Coverage Results" MODIFIED="1711580031449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/panoramashva$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1715029502346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$panorama.coverage" NAME="panorama Coverage Results" MODIFIED="1711226801477" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/panoramashva$openstitchtest.coverage" NAME="openstitchtest Coverage Results" MODIFIED="1715021422243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/panoramashva$mainZV.coverage" NAME="mainZV Coverage Results" MODIFIED="1715031092217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/StichingAndCombined" />
+    <SUITE FILE_PATH="coverage/panoramashva$openstitchtest.coverage" NAME="openstitchtest Coverage Results" MODIFIED="1715031284644" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$decimate.coverage" NAME="decimate Coverage Results" MODIFIED="1711227572446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$yolotrain.coverage" NAME="yolotrain Coverage Results" MODIFIED="1712517005728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$stitcher.coverage" NAME="stitcher Coverage Results" MODIFIED="1711227579689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/panoramashva$getimage.coverage" NAME="getimage Coverage Results" MODIFIED="1715031058729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/StichingAndCombined" />
     <SUITE FILE_PATH="coverage/panoramashva$11111.coverage" NAME="11111 Coverage Results" MODIFIED="1711919092515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$generate_pano.coverage" NAME="generate_pano Coverage Results" MODIFIED="1711242325467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$hueta.coverage" NAME="hueta Coverage Results" MODIFIED="1711242628614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$smth.coverage" NAME="smth Coverage Results" MODIFIED="1711579868981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/panoramashva$cap_key_frames.coverage" NAME="cap_key_frames Coverage Results" MODIFIED="1715019666757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/panoramashva$cap_key_frames.coverage" NAME="cap_key_frames Coverage Results" MODIFIED="1715028854410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$stitch_akaze.coverage" NAME="stitch_akaze Coverage Results" MODIFIED="1711239288834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$mainZ.coverage" NAME="mainZ Coverage Results" MODIFIED="1715016524055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/StichingAndCombined" />
+    <SUITE FILE_PATH="coverage/panoramashva$test.coverage" NAME="test Coverage Results" MODIFIED="1715023476417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

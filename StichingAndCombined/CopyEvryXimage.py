@@ -3,10 +3,10 @@ import shutil
 
 
 # Путь к исходной папке с изображениями
-source_folder = r'C:\OSPanel\domains\TgBot\panoramashva\2'
+source_folder = r'H:\panoramashva\panoramashva\Test'
 
 # Путь к папке, в которую будут скопированы изображения
-destination_folder = r'C:\OSPanel\domains\TgBot\panoramashva\1'
+destination_folder = r'H:\panoramashva\panoramashva\copythere'
 
 # Получаем список всех файлов в исходной папке
 files = os.listdir(source_folder)
@@ -15,7 +15,7 @@ files = os.listdir(source_folder)
 files.sort()
 
 # Количество изображений для копирования
-images_to_copy = 10
+images_to_copy = 2
 
 # Перебираем файлы и копируем каждое 10-е изображение
 for i, file in enumerate(files):

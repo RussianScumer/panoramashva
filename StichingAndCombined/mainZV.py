@@ -8,7 +8,7 @@ import numpy as np
 import time
 # Укажите путь к папке с изображениями
 # пути
-image_folder = r'C:\OSPanel\domains\New\panoramashva\2'
+image_folder = r'H:\panoramashva\panoramashva\Test'
 #1панорама
 panorama1Path = 'Panorama1Part.jpg'
 #Объединение изображений.
