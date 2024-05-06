@@ -3,7 +3,7 @@ import shutil
 
 
 # Путь к исходной папке с изображениями
-source_folder = r'C:\OSPanel\domains\TgBot\panoramashva\images6000'
+source_folder = r'C:\OSPanel\domains\TgBot\panoramashva\2'
 
 # Путь к папке, в которую будут скопированы изображения
 destination_folder = r'C:\OSPanel\domains\TgBot\panoramashva\1'

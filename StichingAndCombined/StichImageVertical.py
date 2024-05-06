@@ -16,10 +16,10 @@ def combine_images_vertically(top_image_path, bottom_image_path, output_path):
     combined_image.paste(top_image, (0, 0))
 
     # Сжимаем второе изображение по ширине до размеров первого изображения
-    resized_bottom_image = bottom_image.resize((top_image.width, int(bottom_image.height * top_image.width / bottom_image.width)), resample=Image.BICUBIC)
+    #resized_bottom_image = bottom_image.resize((top_image.width, int(bottom_image.height * top_image.width / bottom_image.width)), resample=Image.BICUBIC)
 
     # Размещаем второе изображение в нужной позиции
-    combined_image.paste(resized_bottom_image, (0, top_image.height))
+    combined_image.paste(bottom_image, (0, top_image.height))
 
     # Обрезаем изображение до нужного размера
     combined_image = combined_image.crop((0, 0, total_width, total_height))

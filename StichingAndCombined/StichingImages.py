@@ -14,15 +14,14 @@ def shovStiching(images):
 
     stitcher = AffineStitcher(blend_strength=20)
     # stitcher = Stitcher(detector="sift", confidence_threshold=0.2)
-
-
-
     if os.path.isfile('second_part.jpg'):
-        images = add_second_part(images)
+        # images.insert(0, "second_part.jpg")
         panorama = stitcher.stitch([*images])
     else:
+        print(images)
         panorama = stitcher.stitch([
             *images
+
         ])
 
     cv2.imwrite("Panorama1Part.jpg", panorama)

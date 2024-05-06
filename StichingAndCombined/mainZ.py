@@ -7,7 +7,7 @@ import numpy as np
 
 # Укажите путь к папке с изображениями
 # пути
-image_folder = r'C:\OSPanel\domains\TgBot\panoramashva\images6000'
+image_folder = r'C:\OSPanel\domains\TgBot\panoramashva\2'
 #1панорама
 panorama1Path = 'Panorama1Part.jpg'
 #Объединение изображений.
