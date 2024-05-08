@@ -8,7 +8,7 @@ def CutImageOnTwoparts(panoramaDir):
     width, height = image.size
 
 # Вычисляем высоту первой части
-    first_part_height = height - 1080
+    first_part_height = height - 780
 
 # Вычисляем координаты для разделения фотографии
     first_part_coords = (0, 0, width, first_part_height)
@@ -19,7 +19,7 @@ def CutImageOnTwoparts(panoramaDir):
     second_part = image.crop(second_part_coords)
 
 # Сохраняем первую часть фотографии , и далее объединяем в
-    first_part.save("first_part_Panorama.jpg")
+    first_part.save("first_part_Panorama.png")
 
 # Сохраняем вторую часть фотографии , передаем в stiching2PartWithNextImages
-    second_part.save("second_part.jpg")
+    second_part.save("second_part.png")

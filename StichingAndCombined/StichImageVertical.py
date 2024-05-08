@@ -25,7 +25,7 @@ def combine_images_vertically(top_image_path, bottom_image_path, output_path):
     combined_image = combined_image.crop((0, 0, total_width, total_height))
 
     # Сохраняем объединенное изображение
-    combined_image.save(output_path)
+    combined_image.save(output_path,"png")
 
 # Пример использования
 # top_image_path = 'first_part_Panorama.jpg'
