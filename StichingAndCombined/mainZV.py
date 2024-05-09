@@ -21,86 +21,22 @@ output_path = 'combined_panorama_vertical3.png'
 ## тут должна быть функция для преобразования видоса в картинки
 #
 files = os.listdir(image_folder)
-# def zapolnenieMassiva(i):
-#     if i == 0:
-#         images = []
-#         images.clear()
-#         for j in range(7):
-#             if i < len(files):
-#                 image_path = os.path.join(image_folder, files[i + j])
-#                 images.append(image_path)
-#                 return images
-#             else:
-#                 break
-#     else:
-#         images = []
-#         images.clear()
-#         for j in range(7):
-#             if j == 0:
-#                 g = -1
-#             else:
-#                 g = 0
-#             if i < len(files):
-#                 image_path = os.path.join(image_folder, files[i + j + g])
-#                 images.append(image_path)
-#                 return images
-#             else:
-#                 break
+images=[]
 
+def keep_last(lst):
+    return lst[-1]
 
-# def zapolnenieMassiva(i):
-#     images = []
-#     start_index = i
-#     end_index = i + 7
-#
-#     if i == 0:
-#         for j in range(start_index, end_index):
-#             if j < len(files):
-#                 image_path = os.path.join(image_folder, files[j])
-#                 images.append(image_path)
-#     else:
-#         last_image = images[-1]  # Получаем последний элемент предыдущего массива
-#         images = [last_image]  # Начинаем новый массив с последнего элемента предыдущего
-#
-#         for j in range(start_index + 1, end_index):
-#             if j < len(files):
-#                 image_path = os.path.join(image_folder, files[j])
-#                 images.append(image_path)
-#
-#     return images
-# def zapolnenieMassiva(i):
-#     images.clear()
-#     if i == 0:
-#         for j in range(7):
-#             if i + j < len(files):
-#                 image_path = os.path.join(image_folder, files[i + j])
-#                 images.append(image_path)
-#         return images
-#     else:
-#         for j in range(7):
-#             if i + j < len(files):
-#                 image_path = os.path.join(image_folder, files[i + j])
-#                 images.append(image_path)
-#         images.insert(0, images.pop())
-#         return images
-
-def zapolnenieMassiva(i):
-    images = []
-    if i == 0:
-        for j in range(7):
-            if i + j < len(files):
-                image_path = os.path.join(image_folder, files[i + j])
-                images.append(image_path)
-    else:
-        images.append(os.path.join(image_folder, files[i - 1]))
-        for j in range(6):
-            if i + j < len(files):
-                image_path = os.path.join(image_folder, files[i + j])
-                images.append(image_path)
+def zapolnenieMassiva(i,images):
+    if images:
+        images = keep_last(images)
+    for j in range(7):
+        if i + j < len(files):
+            image_path = os.path.join(image_folder, files[i + j])
+            images.append(image_path)
     return images
 
 i = 0
-while i < 9:
+while i < len(files):
     images = zapolnenieMassiva(i)
     print((images))
     if images:
