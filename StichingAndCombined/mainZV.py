@@ -21,7 +21,7 @@ output_path = 'combined_panorama_vertical3.png'
 ## тут должна быть функция для преобразования видоса в картинки
 #
 files = os.listdir(image_folder)
-images=[]
+
 
 def keep_last(lst):
     return lst[-1]
@@ -37,6 +37,7 @@ def zapolnenieMassiva(i,images):
 
 i = 0
 while i < len(files):
+    images = []
     images = zapolnenieMassiva(i)
     print((images))
     if images:
