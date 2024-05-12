@@ -8,6 +8,10 @@ def add_second_part(images):
     return images
 
 def shovStiching(images):
+    settings = {
+        "confidence_threshold": 0.05
+    }
+
     stitcher = AffineStitcher(blend_strength=20)
     # stitcher = Stitcher(detector="sift", confidence_threshold=0.2)
     if os.path.isfile('second_part.png'):

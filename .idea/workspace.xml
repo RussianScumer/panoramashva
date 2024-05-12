@@ -63,7 +63,9 @@
   &quot;keyToString&quot;: {
     &quot;Python.11111.executor&quot;: &quot;Run&quot;,
     &quot;Python.CutImage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MeGaStichingSettings.executor&quot;: &quot;Run&quot;,
     &quot;Python.StichImageVertical.executor&quot;: &quot;Run&quot;,
+    &quot;Python.StichImageVertical2.executor&quot;: &quot;Run&quot;,
     &quot;Python.StichingImages.executor&quot;: &quot;Run&quot;,
     &quot;Python.Video_To_image.executor&quot;: &quot;Run&quot;,
     &quot;Python.cap_key_frames.executor&quot;: &quot;Run&quot;,
@@ -88,7 +90,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/New/panoramashva/StichingAndCombined&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/TgBot/panoramashva/StichingAndCombined&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -100,6 +102,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\OSPanel\domains\TgBot\panoramashva\StichingAndCombined" />
       <recent name="C:\OSPanel\domains\New\panoramashva\StichingAndCombined" />
       <recent name="C:\OSPanel\domains\New\panoramashva" />
     </key>
