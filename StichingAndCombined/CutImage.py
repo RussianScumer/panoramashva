@@ -8,7 +8,7 @@ def CutImageOnTwoparts(panoramaDir):
     width, height = image.size
 
 # Вычисляем высоту первой части
-    first_part_height = height - 780
+    first_part_height = height - 380
 
 # Вычисляем координаты для разделения фотографии
     first_part_coords = (0, 0, width, first_part_height)

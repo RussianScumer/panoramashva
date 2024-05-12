@@ -1,6 +1,6 @@
 import os
 from CutImage import CutImageOnTwoparts
-from StichImageVertical import combine_images_vertically
+from StichImageVertical2 import combine_images_vertically
 from StichingImages import shovStiching
 import cv2
 import numpy as np
