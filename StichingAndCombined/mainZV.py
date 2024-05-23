@@ -35,10 +35,11 @@ def zapolnenieMassiva(i,images):
             images.append(image_path)
     return images
 
+
 i = 0
 while i < len(files):
     images = zapolnenieMassiva(i)
-    print((images))
+    print(images)
     if images:
             shovStiching(images)
             print((i))
