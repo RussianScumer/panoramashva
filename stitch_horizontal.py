@@ -1,17 +1,15 @@
+import glob
 import os
 from PIL import Image
 
 
-def combine_images_horizontally(folder_path, output_path):
+def combine_images_horizontally(folder_path, output_path, steps):
     # Получаем список всех файлов изображений в папке
-    image_files = [f for f in os.listdir(folder_path) if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif'))]
-
-    if not image_files:
-        print("В указанной папке нет изображений.")
-        return
+    pattern = os.path.join(folder_path, f'{steps}_*')
+    files = glob.glob(pattern)
 
     # Открываем все изображения
-    images = [Image.open(os.path.join(folder_path, img)) for img in image_files]
+    images = [Image.open(os.path.join(folder_path, img)) for img in files]
 
     # Вычисляем общую ширину и максимальную высоту
     total_width = sum(img.width for img in images)
