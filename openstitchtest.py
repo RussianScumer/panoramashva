@@ -6,7 +6,7 @@ from stitching import AffineStitcher
 
 settings = {"detector": "sift", "confidence_threshold": 0.2, "try_use_gpu": True}
 stitcher = Stitcher(**settings)
-settingsAffine = {"detector": "sift", "confidence_threshold": 0.1, "try_use_gpu": True}
+settingsAffine = {"detector": "sift", "confidence_threshold": 0.01, "try_use_gpu": True}
 stitcherAffine = AffineStitcher(**settingsAffine)
 '''
 imagelast = 0
@@ -77,7 +77,7 @@ if len(all_files_reduced) >= 2:
 #print(all_files_reduced)
 #panorama = stitcher.stitch(all_files_reduced)
 #panorama = stitcher.stitch(['key_frames/frame0.jpg', 'key_frames/frame1.jpg'])
-panorama = stitcherAffine.stitch(all_files)
+panorama = stitcherAffine.stitch(['H:/panoramashva/panoramashva/frames/VID_20240604_104030/0.jpg', 'H:/panoramashva/panoramashva/frames/VID_20240604_104030/2.jpg'])
 # panorama = cv2.resize(panorama, dim, interpolation=cv2.INTER_AREA)
 cv2.imshow('Panorama', panorama)
 cv2.imwrite('panorama.jpg', panorama)
