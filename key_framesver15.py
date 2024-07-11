@@ -25,7 +25,7 @@ delete_files_in_folder(folder_path)
 
 auto = True #замер скорости изоленты
 
-size_of_frames = 3  # то какую часть в последующем будем брать из видео
+size_of_frames = 5  # то какую часть в последующем будем брать из видео
 imagelast = 0
 vidcap = cv2.VideoCapture('videos/%s' % video_path + '.mp4')
 success, image = vidcap.read()
@@ -39,6 +39,7 @@ if auto:
     save_frames_from_vid_40sec('videos/%s' % video_path + '.mp4', 'save_auto_speed_count')
     videothresh = calculate_speed(find_tape_coordinates('save_auto_speed_count'), 100)
     videothresh = int((720 / videothresh) / (size_of_frames))
+    videothresh = int(videothresh + videothresh*0.05)
     print(videothresh)
 
 image = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
