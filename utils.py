@@ -41,7 +41,7 @@ def save_frames_from_vid_40sec(vid_path, save_path, every_count=100):
 
 def find_slices(list_len, window_size, step=5):
     # Разбивает всё количество фоток на равные части размера window_size (стабильнее всего 10 штук) с перехлёстом по
-    # step штук Довольно костыльная штука, но для (10, 5) работает
+    # step штук, для (10, 5) работает
     slices = [(i, i + window_size) for i in range(0, list_len, step)]
     if slices[-1][1] == list_len:
         slices[-1] = (slices[-1][0], slices[-1][1] + 1)
@@ -51,3 +51,25 @@ def find_slices(list_len, window_size, step=5):
     elif slices[-2][1] > list_len:
         del slices[-1]
     return slices
+
+def count_iterations(total_images, num_to_stitch):
+    images = list(range(total_images))
+    iterations = 0
+
+    def stitch_images(images, num_to_stitch):
+        nonlocal iterations
+        while len(images) > num_to_stitch:
+            iterations += 1
+            new_images = []
+            for i in range(0, len(images) - num_to_stitch + 1, 5):
+                new_images.append(images[i:i+num_to_stitch])
+            images = new_images
+        return images
+
+    stitch_images(images, num_to_stitch)
+    return iterations
+
+total_images = 188
+num_to_stitch = 10
+iterations = count_iterations(total_images, num_to_stitch)
+print(f"Количество итераций: {iterations}")
