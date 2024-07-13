@@ -23,7 +23,7 @@ def is_video_vertical(flow):
 
 
 # Открываем видео файл
-cap = cv2.VideoCapture('videos/41H.mp4')
+cap = cv2.VideoCapture('videos/4.mp4')
 
 # Получаем общее количество кадров в видео
 total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))

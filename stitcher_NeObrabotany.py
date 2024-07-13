@@ -74,7 +74,7 @@ def get_pano_for_slice(start, end, n, step):
 
 
 if __name__ == '__main__':
-    vid_name = '3.mp4'  # Здесь название видео, которое надо разбить на кадры
+    vid_name = '4.mp4'  # Здесь название видео, которое надо разбить на кадры
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
