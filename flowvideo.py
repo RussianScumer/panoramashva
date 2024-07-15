@@ -22,58 +22,59 @@ def is_video_vertical(flow):
     return vertical_motion > horizontal_motion
 
 
-# Открываем видео файл
-cap = cv2.VideoCapture('videos/4.mp4')
+def flowvideo(video):
+    # Открываем видео файл
+    cap = cv2.VideoCapture('videos/' + video)
 
-# Получаем общее количество кадров в видео
-total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    # Получаем общее количество кадров в видео
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 
-# Вычисляем индекс среднего кадра
-middle_frame_index = total_frames // 2
+    # Вычисляем индекс среднего кадра
+    middle_frame_index = total_frames // 2
 
-# Устанавливаем позицию видео на средний кадр
-cap.set(cv2.CAP_PROP_POS_FRAMES, middle_frame_index)
+    # Устанавливаем позицию видео на средний кадр
+    cap.set(cv2.CAP_PROP_POS_FRAMES, middle_frame_index)
 
-ret, first_frame = cap.read()
-prev_gray = cv2.cvtColor(first_frame, cv2.COLOR_BGR2GRAY)
+    ret, first_frame = cap.read()
+    prev_gray = cv2.cvtColor(first_frame, cv2.COLOR_BGR2GRAY)
 
-vertical_count = 0
-horizontal_count = 0
+    vertical_count = 0
+    horizontal_count = 0
 
-for i in range(10):
-    ret, frame = cap.read()
-    if not ret:
-        break
+    for i in range(10):
+        ret, frame = cap.read()
+        if not ret:
+            break
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    # Вычисляем оптический поток
-    flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
+        # Вычисляем оптический поток
+        flow = cv2.calcOpticalFlowFarneback(prev_gray, gray, None, 0.5, 3, 15, 3, 5, 1.2, 0)
 
-    # Визуализируем поток
-    vis = draw_flow(gray, flow)
+        # Визуализируем поток
+        vis = draw_flow(gray, flow)
 
-    # Показываем результат
-    #cv2.imshow('Optical Flow', vis)
+        # Показываем результат
+        #cv2.imshow('Optical Flow', vis)
 
-    # Обновляем предыдущий кадр
-    prev_gray = gray
+        # Обновляем предыдущий кадр
+        prev_gray = gray
 
-    # Определяем, идет ли видео вертикально или горизонтально
-    if is_video_vertical(flow):
-        vertical_count += 1
+        # Определяем, идет ли видео вертикально или горизонтально
+        if is_video_vertical(flow):
+            vertical_count += 1
+        else:
+            horizontal_count += 1
+
+        # Ждем 1 секунду перед обработкой следующего кадра
+        if cv2.waitKey(1000) & 0xFF == ord('q'):
+            break
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+    # Выводим результат
+    if vertical_count > horizontal_count:
+        return True  #vert
     else:
-        horizontal_count += 1
-
-    # Ждем 1 секунду перед обработкой следующего кадра
-    if cv2.waitKey(1000) & 0xFF == ord('q'):
-        break
-
-cap.release()
-cv2.destroyAllWindows()
-
-# Выводим результат
-if vertical_count > horizontal_count:
-    print("Видео идет вертикально")
-else:
-    print("Видео идет горизонтально")
+        return False  #horiz

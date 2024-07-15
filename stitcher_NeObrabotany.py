@@ -3,6 +3,8 @@ import time
 from pathlib import Path
 from joblib import Parallel, delayed
 from stitching import Stitcher
+
+from flowvideo import flowvideo
 from utils import save_frames_from_vid, find_slices
 from stitch_horizontal import combine_images_horizontally
 
@@ -79,14 +81,15 @@ if __name__ == '__main__':
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
     save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
-
+    what_flow = flowvideo(vid_name)
     # Создаём список кадров, из которых надо сшить панораму
     images = []
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
     for img_path in sorted(vid_frames_folder.glob('*.jpg'), key=lambda x: int(x.stem)):
         img = cv2.imread(img_path.as_posix())
-        img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)  # Очень важно повернуть кадры, чтобы они сшивальсь
+        if what_flow:
+            img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)  # Очень важно повернуть кадры, чтобы они сшивальсь
         # слева-направо. Вертикально работает очень плохо или не работает вообще
         images.append(img)
     print(len(images))
@@ -120,4 +123,4 @@ if __name__ == '__main__':
 
     final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
 
-    combine_images_horizontally(r"C:\OSPanel\domains\New\panoramashva\panos", "copythere", step)
+    combine_images_horizontally("panos", "copythere", step)
