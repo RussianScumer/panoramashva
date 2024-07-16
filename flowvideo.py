@@ -75,6 +75,8 @@ def flowvideo(video):
 
     # Выводим результат
     if vertical_count > horizontal_count:
+        print('vert')
         return True  #vert
     else:
+        print('horiz')
         return False  #horiz

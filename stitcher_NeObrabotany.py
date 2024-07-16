@@ -82,7 +82,7 @@ if __name__ == '__main__':
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
-    save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
+    #save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
     what_flow = flowvideo(vid_name)
     # Создаём список кадров, из которых надо сшить панораму
     images = []
@@ -101,10 +101,12 @@ if __name__ == '__main__':
     num_to_stich = 10  # Количество склеиваемых фото. Чем больше, тем квадратично дольше ждать и менее стабильно. 10
     steps_to_do = len(images)
     tmp = 0
-    while steps_to_do > 0:
-        tmp = ceil(steps_to_do)
-        steps_to_do = steps_to_do/num_to_stich
-
+    while steps_to_do > 1:
+        tmp = steps_to_do
+        #print(tmp)
+        steps_to_do = int(ceil(steps_to_do/num_to_stich))
+    steps_to_do = tmp
+    print(steps_to_do)
     # практически оптимально.
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
