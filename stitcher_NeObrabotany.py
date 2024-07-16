@@ -15,6 +15,7 @@ path_to_frames = Path('./frames')  # путь к папке, куда будут
 path_to_panos = Path('./panos')  # путь к папке, куда будут сохраняться промежуточные панорамы
 path_to_frames.mkdir(exist_ok=True, parents=True)
 path_to_panos.mkdir(exist_ok=True, parents=True)
+
 how_to_stitch = True
 
 # настройки сшивателя
@@ -112,7 +113,7 @@ if __name__ == '__main__':
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
         if step == steps_to_do - 1 and how_to_stitch:
-            overlap = 8
+            overlap = num_to_stich
         slices = find_slices(len(images), num_to_stich, overlap)
         print(f'{len(slices)} slices')
         print(slices)

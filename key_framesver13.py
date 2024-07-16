@@ -20,8 +20,10 @@ def crop_center_one_third_height(image, scale):
     cropped_image = image[top:bottom, left:right]
     return cropped_image
 
-folder_path = 'frames/4'  # Замените на путь к нужной папке
+folder_path = 'frames/1'  # Замените на путь к нужной папке
+folder_path2 = 'panos'
 delete_files_in_folder(folder_path)
+delete_files_in_folder(folder_path2)
 auto = True #замер скорости изоленты
 
 size_of_frames = 3  # то какую часть в последующем будем брать из видео
