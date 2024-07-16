@@ -76,7 +76,7 @@ def get_pano_for_slice(start, end, n, step):
 
 
 if __name__ == '__main__':
-    vid_name = '4.mp4'  # Здесь название видео, которое надо разбить на кадры
+    vid_name = '1.mp4'  # Здесь название видео, которое надо разбить на кадры
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
@@ -95,7 +95,7 @@ if __name__ == '__main__':
     print(len(images))
 
     step = 1  # Начальный шаг
-    overlap = 1  # Перехлёст количества фото. Место для экспериментов
+    overlap = 4  # Перехлёст количества фото. Место для экспериментов
     num_to_stich = 10  # Количество склеиваемых фото. Чем больше, тем квадратично дольше ждать и менее стабильно. 10
     # практически оптимально.
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
