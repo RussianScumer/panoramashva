@@ -1,3 +1,5 @@
+from math import ceil
+
 import cv2
 import time
 from pathlib import Path
@@ -95,11 +97,19 @@ if __name__ == '__main__':
     print(len(images))
 
     step = 1  # Начальный шаг
-    overlap = 4  # Перехлёст количества фото. Место для экспериментов
+    overlap = 5  # Перехлёст количества фото. Место для экспериментов
     num_to_stich = 10  # Количество склеиваемых фото. Чем больше, тем квадратично дольше ждать и менее стабильно. 10
+    steps_to_do = len(images)
+    tmp = 0
+    while steps_to_do > 0:
+        tmp = ceil(steps_to_do)
+        steps_to_do = steps_to_do/num_to_stich
+
     # практически оптимально.
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
+        if step == steps_to_do - 1:
+            overlap = 10
         slices = find_slices(len(images), num_to_stich, overlap)
         print(f'{len(slices)} slices')
         print(slices)
@@ -121,6 +131,6 @@ if __name__ == '__main__':
                               'final_megapix': 3, })  # панорама ограничена примерно 32000 пикселей по ширине/высоте.
     # Последняя склейка делает это число больше, поэтому приходится делать сжатие, нельзя оставлять -3
 
-    final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
+    #final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
 
     combine_images_horizontally("panos", "copythere", step)
