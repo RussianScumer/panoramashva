@@ -1,5 +1,7 @@
 import os
 import cv2
+
+from flowvideo import flowvideo
 from speed_calculator import find_tape_coordinates, calculate_speed
 from utils import save_frames_from_vid_40sec
 from PIL import Image
@@ -29,6 +31,7 @@ size_of_frames = 5  # то какую часть в последующем бу�
 imagelast = 0
 vidcap = cv2.VideoCapture('videos/%s' % video_path + '.mp4')
 success, image = vidcap.read()
+what_flow = flowvideo(video_path + '.mp4')
 count = 0
 dim = (1920, 1080)
 videothresh = 235  # частота кадров, через которую берем их из видео из расчёта 30 кадров
@@ -60,6 +63,8 @@ while success:
         continue
     if image is not None:
         image = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+        if not what_flow:
+            image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
         cv2.imwrite("frames/%s/%d.jpg" % (video_path, count), crop_center_one_fifth_height(image, size_of_frames))
     print('Read a new frame: ', success)
     count += 1
