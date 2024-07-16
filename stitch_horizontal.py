@@ -9,7 +9,7 @@ def combine_images_horizontally(folder_path, output_path, steps):
     files = glob.glob(pattern)
 
     # Открываем все изображения
-    images = [Image.open(os.path.join(folder_path, img)) for img in files]
+    images = [Image.open(img) for img in files]
 
     # Вычисляем общую ширину и максимальную высоту
     total_width = sum(img.width for img in images)

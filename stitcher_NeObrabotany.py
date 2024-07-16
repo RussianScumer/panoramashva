@@ -15,6 +15,7 @@ path_to_frames = Path('./frames')  # путь к папке, куда будут
 path_to_panos = Path('./panos')  # путь к папке, куда будут сохраняться промежуточные панорамы
 path_to_frames.mkdir(exist_ok=True, parents=True)
 path_to_panos.mkdir(exist_ok=True, parents=True)
+how_to_stitch = True
 
 # настройки сшивателя
 stitcher_settings = {'try_use_gpu': True,
@@ -110,8 +111,8 @@ if __name__ == '__main__':
     # практически оптимально.
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
-        if step == steps_to_do - 1:
-            overlap = 10
+        if step == steps_to_do - 1 and how_to_stitch:
+            overlap = 8
         slices = find_slices(len(images), num_to_stich, overlap)
         print(f'{len(slices)} slices')
         print(slices)
@@ -127,12 +128,15 @@ if __name__ == '__main__':
 
     # Здесь не очень хорошее решение с точки зрения архитектуры, но я не запаривался, а делал, чтоб побыстрее.
     # Надо просто повторить ещё одну склейку, но немного с другими параметрами
-    stitcher_settings.update({'crop': False,
+    if how_to_stitch:
+        combine_images_horizontally("panos", "copythere", step)
+    else:
+        stitcher_settings.update({'crop': False,
                               # Из-за больших искажений, сшиватель просто не сможет найти общую область, поэтому
                               # оставляем чёрные полосы
                               'final_megapix': 3, })  # панорама ограничена примерно 32000 пикселей по ширине/высоте.
     # Последняя склейка делает это число больше, поэтому приходится делать сжатие, нельзя оставлять -3
 
-    #final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
+        final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
 
-    combine_images_horizontally("panos", "copythere", step)
+
