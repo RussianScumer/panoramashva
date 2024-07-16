@@ -1,10 +1,13 @@
 import os
 import cv2
+
+from flowvideo import flowvideo
 from speed_calculator import find_tape_coordinates, calculate_speed
 from utils import save_frames_from_vid_40sec
 from PIL import Image
 import numpy as np
 from ClearDirectory import delete_files_in_folder
+
 video_path = '4'
 
 
@@ -20,15 +23,17 @@ def crop_center_one_third_height(image, scale):
     cropped_image = image[top:bottom, left:right]
     return cropped_image
 
+
 folder_path = 'frames/1'  # Замените на путь к нужной папке
 folder_path2 = 'panos'
 delete_files_in_folder(folder_path)
 delete_files_in_folder(folder_path2)
-auto = True #замер скорости изоленты
-
+auto = True  #замер скорости изоленты
+what_flow = flowvideo(video_path + '.mp4')
 size_of_frames = 3  # то какую часть в последующем будем брать из видео
 imagelast = 0
 vidcap = cv2.VideoCapture('videos/%s' % video_path + '.mp4')
+
 success, image = vidcap.read()
 count = 0
 dim = (1920, 1080)
@@ -50,6 +55,7 @@ if not os.path.exists('frames/%s' % video_path):
     os.makedirs('frames/%s' % video_path)
 
 cv2.imwrite("frames/%s/%d.jpg" % (video_path, count), crop_center_one_third_height(image, size_of_frames))
+
 # images.append(image)
 while success:
     # cv2.imwrite("test/frame%d.jpg" % count, image)
@@ -63,7 +69,8 @@ while success:
         continue
     if image is not None:
         image = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
-        # image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
+        if not what_flow:
+            image = cv2.rotate(image, cv2.ROTATE_90_CLOCKWISE)
         cv2.imwrite("frames/%s/%d.jpg" % (video_path, count), crop_center_one_third_height(image, size_of_frames))
         # images.append(image)
     print('Read a new frame: ', success)
