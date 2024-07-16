@@ -1,10 +1,13 @@
 import glob
 import os
+import time
+
 from PIL import Image
 
 
 def combine_images_horizontally(folder_path, output_path, steps):
     # Получаем список всех файлов изображений в папке
+
     pattern = os.path.join(folder_path, f'{steps}_*')
     files = glob.glob(pattern)
 
@@ -27,6 +30,3 @@ def combine_images_horizontally(folder_path, output_path, steps):
     # Сохраняем объединенное изображение
     combined_image.save(output_path, "png")
     print(f"Объединенное изображение сохранено как {output_path}")
-
-
-

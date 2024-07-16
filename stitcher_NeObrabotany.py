@@ -1,3 +1,4 @@
+
 from math import ceil
 
 import cv2
@@ -84,7 +85,7 @@ if __name__ == '__main__':
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
-    #save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
+    save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
     what_flow = flowvideo(vid_name)
     # Создаём список кадров, из которых надо сшить панораму
     images = []
@@ -110,10 +111,13 @@ if __name__ == '__main__':
     steps_to_do = tmp
     print(steps_to_do)
     # практически оптимально.
-    while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
+    while len(images) > num_to_stich+5:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
         if step == steps_to_do - 1 and how_to_stitch:
             overlap = num_to_stich
+        if len(images) < num_to_stich+5:
+            num_to_stich=len(images)
+
         slices = find_slices(len(images), num_to_stich, overlap)
         print(f'{len(slices)} slices')
         print(slices)
@@ -130,7 +134,7 @@ if __name__ == '__main__':
     # Здесь не очень хорошее решение с точки зрения архитектуры, но я не запаривался, а делал, чтоб побыстрее.
     # Надо просто повторить ещё одну склейку, но немного с другими параметрами
     if how_to_stitch:
-        combine_images_horizontally("panos", "copythere", step)
+        combine_images_horizontally('panos', 'copythere', step-1)
     else:
         stitcher_settings.update({'crop': False,
                               # Из-за больших искажений, сшиватель просто не сможет найти общую область, поэтому
