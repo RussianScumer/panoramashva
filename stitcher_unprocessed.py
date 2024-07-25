@@ -111,13 +111,14 @@ if __name__ == '__main__':
         steps_to_do = int(ceil(steps_to_do / num_to_stich))
     steps_to_do = tmp
     print(steps_to_do)
+    tmp_num_to_stich = num_to_stich
     # практически оптимально.
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
         if step == steps_to_do - 1 and how_to_stitch:
             overlap = num_to_stich
-        if len(images) < num_to_stich:
-            num_to_stich = num_to_stich + len(images)
+        if num_to_stich < len(images) < num_to_stich * 2:
+            num_to_stich = len(images) + num_to_stich
 
         slices = find_slices(len(images), num_to_stich, overlap)
         print(f'{len(slices)} slices')
@@ -130,6 +131,7 @@ if __name__ == '__main__':
         images = res.copy()
         print(f'{len(images)} images left')
         step += 1
+        num_to_stich = tmp_num_to_stich
     print('Done')
 
     # Здесь не очень хорошее решение с точки зрения архитектуры, но я не запаривался, а делал, чтоб побыстрее.
