@@ -112,12 +112,12 @@ if __name__ == '__main__':
     steps_to_do = tmp
     print(steps_to_do)
     # практически оптимально.
-    while len(images) > num_to_stich + 5:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
+    while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
         if step == steps_to_do - 1 and how_to_stitch:
             overlap = num_to_stich
-        if len(images) < num_to_stich + 5:
-            num_to_stich = len(images)
+        if len(images) < num_to_stich:
+            num_to_stich = num_to_stich + len(images)
 
         slices = find_slices(len(images), num_to_stich, overlap)
         print(f'{len(slices)} slices')
