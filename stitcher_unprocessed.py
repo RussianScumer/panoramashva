@@ -16,8 +16,8 @@ path_to_panos = Path('./panos')  # путь к папке, куда будут �
 path_to_frames.mkdir(exist_ok=True, parents=True)
 path_to_panos.mkdir(exist_ok=True, parents=True)
 
-#Сшивать либо до конца алгоритмами, либо последний шаг втупую, зависит от качества видео, тряски и т.п.
-how_to_stitch = True
+# Сшивать либо до конца алгоритмами, либо последний шаг втупую, зависит от качества видео, тряски и т.п.
+
 
 # настройки сшивателя
 stitcher_settings = {'try_use_gpu': True,
@@ -80,8 +80,7 @@ def get_pano_for_slice(start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
-if __name__ == '__main__':
-    vid_name = '1'  # Здесь название видео, которое надо разбить на кадры
+def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10):
     vid_name = vid_name + '.mp4'
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
@@ -89,6 +88,7 @@ if __name__ == '__main__':
     save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
     what_flow = flowvideo(vid_name)
     # Создаём список кадров, из которых надо сшить панораму
+    global images
     images = []
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
@@ -100,18 +100,15 @@ if __name__ == '__main__':
         images.append(img)
     print(len(images))
 
-    step = 1  # Начальный шаг
-    overlap = 5  # Перехлёст количества фото. Место для экспериментов
-    num_to_stich = 10  # Количество склеиваемых фото. Чем больше, тем квадратично дольше ждать и менее стабильно. 10
     steps_to_do = len(images)
     tmp = 0
     while steps_to_do > 1:
         tmp = steps_to_do
-        #print(tmp)
-        steps_to_do = int(ceil(steps_to_do / num_to_stich))
+        # print(tmp)
+        steps_to_do = int(ceil(steps_to_do / num_to_stitch))
     steps_to_do = tmp
     print(steps_to_do)
-    tmp_num_to_stich = num_to_stich
+    tmp_num_to_stich = num_to_stitch
     # практически оптимально.
     while len(images) > num_to_stich:  # Склеиваем рекурсивно, пока не останется фоток на одну склейку
         print(f'------Step {step}------')
@@ -137,7 +134,7 @@ if __name__ == '__main__':
     # Здесь не очень хорошее решение с точки зрения архитектуры, но я не запаривался, а делал, чтоб побыстрее.
     # Надо просто повторить ещё одну склейку, но немного с другими параметрами
     if how_to_stitch:
-        combine_images_horizontally('panos', 'copythere', step - 1)
+        combine_images_horizontally('panos', vid_name, step - 1)
     else:
         stitcher_settings.update({'crop': False,
                                   # Из-за больших искажений, сшиватель просто не сможет найти общую область, поэтому
@@ -146,3 +143,4 @@ if __name__ == '__main__':
         # Последняя склейка делает это число больше, поэтому приходится делать сжатие, нельзя оставлять -3
 
         final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
+        cv2.imwrite('results/' + vid_name + '.png', final_pano)

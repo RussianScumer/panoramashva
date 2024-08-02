@@ -30,8 +30,7 @@ def crop_center_one_fifth_height(image, scale):
     return cropped_image
 
 
-def stitch_processed(video_path='4', saved_img_name='12345', size_of_frames=3, auto=True, videothresh=235,
-                     framecount=150):
+def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=235, framecount=150):
     '''
     Все необходимые переменные
 
@@ -117,7 +116,7 @@ def stitch_processed(video_path='4', saved_img_name='12345', size_of_frames=3, a
     photo_array = np.concatenate(photo_array, axis=0)
     photo_array = cv2.cvtColor(photo_array, cv2.COLOR_BGR2RGB)
 
-    cv2.imwrite(saved_img_name + '.png', photo_array)
-    cv2.imshow('test', photo_array)
+    cv2.imwrite('results/' + video_path + '.png', photo_array)
+    #cv2.imshow('test', photo_array)
     print("done")
     cv2.waitKey()
