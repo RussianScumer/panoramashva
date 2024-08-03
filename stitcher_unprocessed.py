@@ -11,7 +11,6 @@ from utils import save_frames_from_vid, find_slices
 from stitch_horizontal import combine_images_horizontally
 
 
-images = []
 path_to_videos = Path('./videos')  # путь к папке с видео
 path_to_frames = Path('./frames')  # путь к папке, куда будут сохраняться кадры
 path_to_panos = Path('./panos')  # путь к папке, куда будут сохраняться промежуточные панорамы
@@ -53,7 +52,7 @@ stitcher_settings = {'try_use_gpu': True,
 # деталь как будто бы её по частям отсканировали сканером (в теории)
 
 
-def get_pano_for_slice(start, end, n, step):
+def get_pano_for_slice(images, start, end, n, step):
     # Основная функция, которая берёт индексы начального кадра и конечного и сшивает их в панораму. n и step просто
     # порядковые номера панорамы в цикле, так как я распараллелил её через joblib Само сшивание может падать,
     # когда не находит проавильные параметры камеры для текущих фичей. Но так как сами фичи при каждом запуске
@@ -66,8 +65,8 @@ def get_pano_for_slice(start, end, n, step):
             stitcher = Stitcher(
                 **stitcher_settings)  # Здесь каждый раз создаём stitcher, чтобы иметь возможность запускать
             # параллельно через joblib. Сам объект stitcher нельзя таскать в параллельных процессах.
-            panorama = stitcher.stitch(images[
-                                       start:end])  # Здесь images это глобальный список кадров. Оставил так, чтобы
+            panorama = stitcher.stitch(images[start:end])  # Здесь images это глобальный список кадров. Оставил так,
+            # чтобы
             # не забивать оперативку в параллельных процессах, иначе в списке параметров каждый раз будет ещё и
             # список фоток, который может много занимать
             cv2.imwrite(f'./panos/{step}_{n}.jpg', panorama)  # Сохраняет промежуточную панораму на диск
@@ -82,23 +81,25 @@ def get_pano_for_slice(start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
-def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10, ):
+def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10):
+    images = []
     vid_name = vid_name + '.mp4'
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
-    save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
-    what_flow = flowvideo(vid_name)
+    #save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
+    #what_flow = flowvideo(vid_name)
     # Создаём список кадров, из которых надо сшить панораму
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
     for img_path in sorted(vid_frames_folder.glob('*.jpg'), key=lambda x: int(x.stem)):
         img = cv2.imread(img_path.as_posix())
-        if what_flow:
-            img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        #if what_flow:
+           # img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         images.append(img)
     print(len(images))
     steps_to_do = len(images)
+    #print(images)
     tmp = 0
     while steps_to_do > 1:
         tmp = steps_to_do
@@ -117,12 +118,12 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
         slices = find_slices(len(images), num_to_stitch, overlap)
         print(f'{len(slices)} slices')
         print(slices)
-        params = [(start, end, n, step) for n, (start, end) in enumerate(slices)]
+        print(len(images))
+        params = [(images, start, end, n, step) for n, (start, end) in enumerate(slices)]
         res = Parallel(n_jobs=12)(delayed(get_pano_for_slice)(*param) for param in
                                   params)  # Параллельно склеиваем панорамы, чтоб не ждать долго. n_jobs под себя
         # настраиваем
-        images.clear()
-        images.extend(res.copy())
+        images = res.copy()
         print(f'{len(images)} images left')
         step += 1
         num_to_stitch = tmp_num_to_stitch
@@ -141,5 +142,3 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
 
         final_pano = get_pano_for_slice(start=0, end=len(images) + 3, n=0, step=999)
         cv2.imwrite('results/' + vid_name + '.png', final_pano)
-
-
