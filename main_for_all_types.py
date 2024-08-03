@@ -32,7 +32,7 @@ if __name__ == '__main__':
     elif stitch_type == 'UNPROCESSED':
         how_to_stitch = settings.get('UNPROCESSED', 'HOW_TO_STITCH', fallback=True)
         step = settings.getint('UNPROCESSED', 'STEP', fallback=1)
-        overlap = settings.getfloat('UNPROCESSED', 'OVERLAP', fallback=5)
+        overlap = settings.getint('UNPROCESSED', 'OVERLAP', fallback=5)
         num_to_stitch = settings.getint('UNPROCESSED', 'NUM_TO_STITCH', fallback=10)
 
         stitch_unprocessed(
