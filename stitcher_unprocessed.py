@@ -44,11 +44,12 @@ stitcher_settings = {'try_use_gpu': True,
                      # Вспомогательный ресайз для этапов сшивателя (лучше посмотреть документацию)
                      }
 
-
 # Комментарий по поводу настроек сшивателя. В теории должны работать аффинные преобразования для этой задачи. Но у
 # меня не получилось добиться нормальных результатов. Полагаю из-за тряски, поворотов и искажений камеры. Если бы
 # камера была полностью стабильна и без искажений, аффинные преобразования смогли бы полностью хорошо сшить всю
 # деталь как будто бы её по частям отсканировали сканером (в теории)
+images = []
+
 
 def get_pano_for_slice(start, end, n, step):
     # Основная функция, которая берёт индексы начального кадра и конечного и сшивает их в панораму. n и step просто
@@ -79,6 +80,7 @@ def get_pano_for_slice(start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
+
 def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10):
     vid_name = vid_name + '.mp4'
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
@@ -86,9 +88,8 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
     vid_path = Path(path_to_videos, vid_name).as_posix()
     save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
     what_flow = flowvideo(vid_name)
-    # Создаём список кадров, из которых надо сшить панораму
     global images
-    images = []
+    # Создаём список кадров, из которых надо сшить панораму
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
     for img_path in sorted(vid_frames_folder.glob('*.jpg'), key=lambda x: int(x.stem)):
@@ -98,7 +99,6 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
         # слева-направо. Вертикально работает очень плохо или не работает вообще
         images.append(img)
     print(len(images))
-
     steps_to_do = len(images)
     tmp = 0
     while steps_to_do > 1:
