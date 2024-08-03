@@ -5,8 +5,8 @@ import configparser
 if __name__ == '__main__':
     # Load settings from the configuration file
     settings = configparser.ConfigParser()
-    settings.read('settings.ini')
-
+    with open('settings.ini', 'r', encoding='utf-8') as config_file:
+        settings.read_file(config_file)
     # Read configuration values
     stitch_type = settings.get('DEFAULT', 'WHAT_TYPE_OF_STITCH')
     video_name = settings.get('DEFAULT', 'VIDEO_NAME')
@@ -14,7 +14,7 @@ if __name__ == '__main__':
     if stitch_type == 'PROCESSED':
         size_of_frames = settings.getint('PROCESSED', 'SIZE_OF_FRAMES', fallback=3)
         auto = settings.getboolean('PROCESSED', 'AUTO_COUNT_VIDEOTHRESH', fallback=True)
-        videothresh = settings.getint('PROCESSED', 'DELAY_FRAMECOUNT', fallback=235)
+        videothresh = settings.getint('PROCESSED', 'VIDEOTRESH', fallback=235)
         framecount = settings.getint('PROCESSED', 'DELAY_FRAMECOUNT', fallback=150)
         need_to_resize = settings.getboolean('PROCESSED', 'NEED_TO_RESIZE', fallback=True)
         need_to_clear_folder = settings.getboolean('PROCESSED', 'NEED_TO_CLEAR_FOLDER', fallback=False)
