@@ -60,7 +60,6 @@ def get_pano_for_slice(start, end, n, step):
     # меняются, потому что этот процесс вероятностный, то я сделал бесконечные попытки сшивки, пока не сошьётся Лучше
     # конечно воткнуть счётчик попыток и после 10-15 попыток всё же выбивать ошибку, чтобы не зависло насовсем
     success = False
-    global images
     while not success:
         time_start = time.time()
         try:
@@ -83,8 +82,7 @@ def get_pano_for_slice(start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
-def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10):
-    global images
+def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10, ):
     vid_name = vid_name + '.mp4'
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
@@ -116,16 +114,15 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
             overlap = num_to_stitch
         if num_to_stitch < len(images) < num_to_stitch * 2:
             num_to_stitch = len(images) + num_to_stitch
-
         slices = find_slices(len(images), num_to_stitch, overlap)
         print(f'{len(slices)} slices')
         print(slices)
-
         params = [(start, end, n, step) for n, (start, end) in enumerate(slices)]
         res = Parallel(n_jobs=12)(delayed(get_pano_for_slice)(*param) for param in
                                   params)  # Параллельно склеиваем панорамы, чтоб не ждать долго. n_jobs под себя
         # настраиваем
-        images = res.copy()
+        images.clear()
+        images.extend(res.copy())
         print(f'{len(images)} images left')
         step += 1
         num_to_stitch = tmp_num_to_stitch
