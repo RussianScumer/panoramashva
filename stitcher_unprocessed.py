@@ -10,7 +10,6 @@ from flowvideo import flowvideo
 from utils import save_frames_from_vid, find_slices
 from stitch_horizontal import combine_images_horizontally
 
-
 path_to_videos = Path('./videos')  # путь к папке с видео
 path_to_frames = Path('./frames')  # путь к папке, куда будут сохраняться кадры
 path_to_panos = Path('./panos')  # путь к папке, куда будут сохраняться промежуточные панорамы
@@ -81,21 +80,21 @@ def get_pano_for_slice(images, start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
-def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10):
+def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10, every_count=100):
     images = []
     vid_name = vid_name + '.mp4'
     vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
     vid_path = Path(path_to_videos, vid_name).as_posix()
-    #save_frames_from_vid(vid_path, vid_frames_folder, every_count=100)  # Разбиваем видео на кадры
-    #what_flow = flowvideo(vid_name)
+    save_frames_from_vid(vid_path, vid_frames_folder, every_count)  # Разбиваем видео на кадры
+    what_flow = flowvideo(vid_name)
     # Создаём список кадров, из которых надо сшить панораму
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
     for img_path in sorted(vid_frames_folder.glob('*.jpg'), key=lambda x: int(x.stem)):
         img = cv2.imread(img_path.as_posix())
-        #if what_flow:
-           # img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        if what_flow:
+            img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
         images.append(img)
     print(len(images))
     steps_to_do = len(images)

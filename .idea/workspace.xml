@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f148632c-263d-4a13-aae5-1fac4e44c3d8" name="Changes" comment="2/3 cropImage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_for_all_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_for_all_types.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/settings.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stitcher_unprocessed.py" beforeDir="false" afterPath="$PROJECT_DIR$/stitcher_unprocessed.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,59 +60,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.11111.executor": "Run",
-    "Python.CutImage.executor": "Run",
-    "Python.MeGaStichingSettings.executor": "Run",
-    "Python.StichImageVertical.executor": "Run",
-    "Python.StichImageVertical2.executor": "Run",
-    "Python.StichingImages.executor": "Run",
-    "Python.Video_To_image.executor": "Run",
-    "Python.cap_key_frames.executor": "Run",
-    "Python.changedir.executor": "Run",
-    "Python.convertToPng.executor": "Run",
-    "Python.copyImagesEvry2.executor": "Run",
-    "Python.crop.executor": "Run",
-    "Python.decimate.executor": "Run",
-    "Python.generate_pano.executor": "Run",
-    "Python.getimage.executor": "Run",
-    "Python.hueta.executor": "Run",
-    "Python.key_framesver15.executor": "Run",
-    "Python.key_framesver2.executor": "Run",
-    "Python.mainZ.executor": "Run",
-    "Python.mainZV.executor": "Run",
-    "Python.main_for_all_types.executor": "Run",
-    "Python.obrabotanii ver 2.executor": "Run",
-    "Python.obrabotanii.executor": "Run",
-    "Python.openstitchtest.executor": "Run",
-    "Python.panorama.executor": "Run",
-    "Python.smth.executor": "Run",
-    "Python.speed_calculator.executor": "Run",
-    "Python.stitch_akaze.executor": "Run",
-    "Python.stitcher.executor": "Run",
-    "Python.stitcher_NeObrabotany.executor": "Run",
-    "Python.stitcher_pasha.executor": "Run",
-    "Python.stitcher_unprocessed.executor": "Debug",
-    "Python.test.executor": "Run",
-    "Python.test2.executor": "Run",
-    "Python.utils.executor": "Run",
-    "Python.videopanorama.executor": "Run",
-    "Python.yolotrain.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/OSPanel/domains/New/panoramashva",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.11111.executor&quot;: &quot;Run&quot;,
+    &quot;Python.CutImage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MeGaStichingSettings.executor&quot;: &quot;Run&quot;,
+    &quot;Python.StichImageVertical.executor&quot;: &quot;Run&quot;,
+    &quot;Python.StichImageVertical2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.StichingImages.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Video_To_image.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cap_key_frames.executor&quot;: &quot;Run&quot;,
+    &quot;Python.changedir.executor&quot;: &quot;Run&quot;,
+    &quot;Python.convertToPng.executor&quot;: &quot;Run&quot;,
+    &quot;Python.copyImagesEvry2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.crop.executor&quot;: &quot;Run&quot;,
+    &quot;Python.decimate.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_pano.executor&quot;: &quot;Run&quot;,
+    &quot;Python.getimage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hueta.executor&quot;: &quot;Run&quot;,
+    &quot;Python.key_framesver15.executor&quot;: &quot;Run&quot;,
+    &quot;Python.key_framesver2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainZ.executor&quot;: &quot;Run&quot;,
+    &quot;Python.mainZV.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main_for_all_types.executor&quot;: &quot;Run&quot;,
+    &quot;Python.obrabotanii ver 2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.obrabotanii.executor&quot;: &quot;Run&quot;,
+    &quot;Python.openstitchtest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.panorama.executor&quot;: &quot;Run&quot;,
+    &quot;Python.smth.executor&quot;: &quot;Run&quot;,
+    &quot;Python.speed_calculator.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stitch_akaze.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stitcher.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stitcher_NeObrabotany.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stitcher_pasha.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stitcher_unprocessed.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.utils.executor&quot;: &quot;Run&quot;,
+    &quot;Python.videopanorama.executor&quot;: &quot;Run&quot;,
+    &quot;Python.yolotrain.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/New/panoramashva&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\New\panoramashva" />
@@ -125,7 +127,7 @@
       <recent name="C:\OSPanel\domains\TgBot\panoramashva" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.cap_key_frames">
     <configuration name="cap_key_frames" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="panoramashva" />
       <option name="ENV_FILES" value="" />
@@ -270,10 +272,10 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/panoramashva$smth.coverage" NAME="smth Coverage Results" MODIFIED="1711579868981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$obrabotanii.coverage" NAME="obrabotanii Coverage Results" MODIFIED="1717072640205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/panoramashva$stitcher_unprocessed.coverage" NAME="stitcher_unprocessed Coverage Results" MODIFIED="1722720805059" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/panoramashva$stitcher_unprocessed.coverage" NAME="stitcher_unprocessed Coverage Results" MODIFIED="1722723720359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$mainZV.coverage" NAME="mainZV Coverage Results" MODIFIED="1715031092217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/StichingAndCombined" />
     <SUITE FILE_PATH="coverage/panoramashva$11111.coverage" NAME="11111 Coverage Results" MODIFIED="1711919092515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/panoramashva$main_for_all_types.coverage" NAME="main_for_all_types Coverage Results" MODIFIED="1722721390559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/panoramashva$main_for_all_types.coverage" NAME="main_for_all_types Coverage Results" MODIFIED="1722723286982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$hueta.coverage" NAME="hueta Coverage Results" MODIFIED="1711242628614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$stitch_akaze.coverage" NAME="stitch_akaze Coverage Results" MODIFIED="1711239288834" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/panoramashva$obrabotanii_ver_2.coverage" NAME="obrabotanii ver 2 Coverage Results" MODIFIED="1716857048261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
