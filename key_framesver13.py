@@ -30,7 +30,8 @@ def crop_center_one_fifth_height(image, scale):
     return cropped_image
 
 
-def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=235, framecount=150):
+def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=235, framecount=150, need_to_resize=True,
+                     need_to_clear_folder=True):
     '''
     Все необходимые переменные
 
@@ -45,17 +46,26 @@ def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=23
     # в секунду 30*время смены кадра / size_of_frames
     framecount = -150  # задержка, чтобы пропустить остановку и т.п (-150  это простой камеры в кадрах 30*sec  )
     #замер скорости
+    need_to_resize = True параметр, чтобы проще было сохранять
 
 
     '''
     folder_path = 'frames/' + video_path
-    delete_files_in_folder(folder_path)
+    if need_to_clear_folder:
+        delete_files_in_folder(folder_path)
     imagelast = 0
     vidcap = cv2.VideoCapture('videos/%s' % video_path + '.mp4')
     success, image = vidcap.read()
-    what_flow = flowvideo(video_path + '.mp4')  #определение направления видео
+    what_flow = flowvideo(video_path + '.mp4')  # определение направления видео
     count = 0
-    dim = (1920, 1080)
+
+    if need_to_resize:
+        dim = (1920, 1080)
+    else:
+        width = int(image.shape[1])
+        height = int(image.shape[0])
+        dim = (width, height)
+
     if auto:
         save_frames_from_vid_40sec('videos/%s' % video_path + '.mp4', 'save_auto_speed_count')
         videothresh = calculate_speed(find_tape_coordinates('save_auto_speed_count'), 100)
@@ -69,7 +79,7 @@ def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=23
         os.makedirs('frames/%s' % video_path)
 
     cv2.imwrite("frames/%s/%d.jpg" % (video_path, count), crop_center_one_fifth_height(image, size_of_frames))
-    #сохранение кадров с оставлением нужной части, для последующей склейки
+    # сохранение кадров с оставлением нужной части, для последующей склейки
     while success:
         success, image = vidcap.read()
         framecount += 1
@@ -96,7 +106,6 @@ def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=23
     file_list = [file for file in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, file))]
     file_list = sorted(file_list, key=lambda x: int(x.split('frame')[-1].split('.')[0]))
     print(file_list)
-    resize_percent = 50  # сжимание для уменьшения размера
 
     photo_array = []
     # собираем все в один np array
@@ -104,19 +113,17 @@ def stitch_processed(video_path='4', size_of_frames=3, auto=True, videothresh=23
         file_path = os.path.join(folder_path, file)
         img = Image.open(file_path)
         img_array = np.array(img)
-        width = int(img_array.shape[1] * resize_percent / 100)
-        height = int(img_array.shape[0] * resize_percent / 100)
-        dim = (width, height)
-        resized = cv2.resize(img_array, dim, interpolation=cv2.INTER_AREA)
         photo_array.append(img_array)
 
     print(photo_array)
     photo_array = np.array(photo_array)
-    #склейка
+    # склейка
     photo_array = np.concatenate(photo_array, axis=0)
     photo_array = cv2.cvtColor(photo_array, cv2.COLOR_BGR2RGB)
-
-    cv2.imwrite('results/' + video_path + '.png', photo_array)
-    #cv2.imshow('test', photo_array)
+    if need_to_resize:
+        cv2.imwrite('results/' + video_path + '_resized' + '.png', photo_array)
+    else:
+        cv2.imwrite('results/' + video_path + '.png', photo_array)
+    # cv2.imshow('test', photo_array)
     print("done")
-    cv2.waitKey()
+    #cv2.waitKey()
