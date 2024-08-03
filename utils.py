@@ -68,8 +68,3 @@ def count_iterations(total_images, num_to_stitch):
 
     stitch_images(images, num_to_stitch)
     return iterations
-
-total_images = 188
-num_to_stitch = 10
-iterations = count_iterations(total_images, num_to_stitch)
-print(f"Количество итераций: {iterations}")
