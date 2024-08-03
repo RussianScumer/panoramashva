@@ -17,7 +17,6 @@ path_to_frames.mkdir(exist_ok=True, parents=True)
 path_to_panos.mkdir(exist_ok=True, parents=True)
 
 # Сшивать либо до конца алгоритмами, либо последний шаг втупую, зависит от качества видео, тряски и т.п.
-images = []
 
 # настройки сшивателя
 stitcher_settings = {'try_use_gpu': True,
