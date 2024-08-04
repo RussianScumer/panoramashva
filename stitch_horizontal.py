@@ -28,5 +28,6 @@ def combine_images_horizontally(folder_path, output_path, steps):
         current_width += img.width
 
     # Сохраняем объединенное изображение
-    combined_image.save('results/' + output_path, "png")
+    output_path = output_path.replace(".mp4", "")
+    combined_image.save('results/' + output_path + ".png", "png")
     print(f"Объединенное изображение сохранено как {output_path}")
