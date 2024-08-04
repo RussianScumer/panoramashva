@@ -34,9 +34,11 @@ if __name__ == '__main__':
         step = settings.getint('UNPROCESSED', 'STEP', fallback=1)
         overlap = settings.getint('UNPROCESSED', 'OVERLAP', fallback=5)
         num_to_stitch = settings.getint('UNPROCESSED', 'NUM_TO_STITCH', fallback=10)
+        every_count = settings.get('UNPROCESSED', 'EVERY_COUNT', fallback = 100)
 
         stitch_unprocessed(
             how_to_stitch=how_to_stitch,
+            every_count=every_count,
             vid_name=video_name,
             step=step,
             overlap=overlap,
