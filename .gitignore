@@ -20,3 +20,9 @@ copythere
 .idea/workspace.xml
 .idea/workspace.xml
 stitcher_unprocessed.py
+settings.ini
+.idea/misc.xml
+.idea/workspace.xml
+__pycache__/speed_calculator.cpython-311.pyc
+__pycache__/stitch_horizontal.cpython-311.pyc
+__pycache__/utils.cpython-311.pyc
