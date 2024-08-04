@@ -1,13 +1,11 @@
-from key_framesver13 import stitch_processed
+from stitcher_processed import stitch_processed
 from stitcher_unprocessed import stitch_unprocessed
 import configparser
 
 if __name__ == '__main__':
-    # Load settings from the configuration file
     settings = configparser.ConfigParser()
     with open('settings.ini', 'r', encoding='utf-8') as config_file:
         settings.read_file(config_file)
-    # Read configuration values
     stitch_type = settings.get('DEFAULT', 'WHAT_TYPE_OF_STITCH')
     video_name = settings.get('DEFAULT', 'VIDEO_NAME')
 
