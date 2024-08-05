@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f148632c-263d-4a13-aae5-1fac4e44c3d8" name="Changes" comment="2/3 cropImage">
+      <change afterPath="$PROJECT_DIR$/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main_for_all_types.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_for_all_types.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/settings.ini" afterDir="false" />
@@ -102,7 +103,7 @@
     &quot;Python.yolotrain.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;api&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/OSPanel/domains/New/panoramashva&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -241,6 +242,8 @@
       <workItem from="1721914828017" duration="4865000" />
       <workItem from="1722528362128" duration="3564000" />
       <workItem from="1722626251593" duration="20011000" />
+      <workItem from="1722883807233" duration="6114000" />
+      <workItem from="1722893126795" duration="571000" />
     </task>
     <task id="LOCAL-00001" summary="2/3 cropImage">
       <option name="closed" value="true" />

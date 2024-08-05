@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
             how_to_stitch=how_to_stitch,
             every_count=every_count,
-            vid_name=video_name,
+            video_name=video_name,
             step=step,
             overlap=overlap,
             num_to_stitch=num_to_stitch,

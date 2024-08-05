@@ -81,9 +81,9 @@ def get_pano_for_slice(images, start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
-def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_to_stitch=10, every_count=100,
+def stitch_unprocessed(video_name='1', how_to_stitch=True, step=1, overlap=5, num_to_stitch=10, every_count=100,
                        need_to_clear_folder_unprocessed=False):
-    folder_path1 = 'frames/' + vid_name
+    folder_path1 = 'frames/' + video_name
     folder_path = 'panos/'
     if how_to_stitch:
         overlap = num_to_stitch-1
@@ -91,12 +91,12 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
         delete_files_in_folder(folder_path1)
         delete_files_in_folder(folder_path)
     images = []
-    vid_name = vid_name + '.mp4'
-    vid_frames_folder = Path(path_to_frames, f'{vid_name.split(".")[0]}')
+    video_name = video_name + '.mp4'
+    vid_frames_folder = Path(path_to_frames, f'{video_name.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
-    vid_path = Path(path_to_videos, vid_name).as_posix()
+    vid_path = Path(path_to_videos, video_name).as_posix()
     save_frames_from_vid(vid_path, vid_frames_folder, every_count)  # Разбиваем видео на кадры
-    what_flow = flowvideo(vid_name)
+    what_flow = flowvideo(video_name)
     # Создаём список кадров, из которых надо сшить панораму
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
@@ -129,7 +129,6 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
         print(f'{len(slices)} slices')
         print(slices)
         print(len(images))
-
         params = [(images, start, end, n, step) for n, (start, end) in enumerate(slices)]
         res = Parallel(n_jobs=12)(delayed(get_pano_for_slice)(*param) for param in
                                   params)  # Параллельно склеиваем панорамы, чтоб не ждать долго. n_jobs под себя
@@ -143,7 +142,7 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
     # Здесь не очень хорошее решение с точки зрения архитектуры, но я не запаривался, а делал, чтоб побыстрее.
     # Надо просто повторить ещё одну склейку, но немного с другими параметрами
     if how_to_stitch:
-        combine_images_horizontally('panos',  vid_name, step - 1)
+        combine_images_horizontally('panos', video_name, step - 1)
     else:
         stitcher_settings.update({'crop': True,
                                   # Из-за больших искажений, сшиватель просто не сможет найти общую область, поэтому
@@ -153,5 +152,5 @@ def stitch_unprocessed(how_to_stitch=True, vid_name='1', step=1, overlap=5, num_
         # поэтому приходится делать сжатие, нельзя оставлять -3
 
         final_pano = get_pano_for_slice(images, start=0, end=len(images) + 3, n=0, step=999)
-        video_name_without_extension = vid_name.replace(".mp4", "")
+        video_name_without_extension = video_name.replace(".mp4", "")
         cv2.imwrite('results/' + video_name_without_extension + '.png', final_pano)
