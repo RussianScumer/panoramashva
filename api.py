@@ -1,7 +1,8 @@
 from fastapi import FastAPI, Request
 from stitcher_unprocessed import stitch_unprocessed
 from stitcher_processed import stitch_processed
-
+from fromframesunprocessed import stitch_fromframesunprocessed
+from fromframesprocessed import stitch_fromframesprocessed
 app = FastAPI()
 
 
@@ -40,3 +41,31 @@ async def unprocessed(video_name: str = '1', how_to_stitch: bool = True, step: i
     return {
         "response": "success"
     }
+
+#what flow pridetsia zadavat' vrychnuu esli gorizontal'no idet video false esli vertikalno true
+@app.get("/fromframesunprocessed")
+async def stitch_fromframesprocessed(pathtoframes: str='1', how_to_stitch: bool=True, step: int =1, overlap: int =5, num_to_stitch: int=10,
+                       need_to_clear_folder_unprocessed: bool=False, what_flow: bool = False):
+    try: 
+        await stitch_fromframesunprocessed(pathtoframes, how_to_stitch, step, overlap, num_to_stitch,
+                       need_to_clear_folder_unprocessed, what_flow)
+    except Exception as e:
+        return {
+            "response": "fail",
+            "error": str(e)
+        }
+    return {
+        "response": "success"
+    }
+
+@app.get("/fromframesprocessed")
+async def stitch_fromframesprocessed(path_to_frames: str = '1', 
+                    need_to_resize: bool = True, need_to_clear_folder: bool = True):
+    try:
+        await stitch_fromframesprocessed(path_to_frames,  need_to_resize, need_to_clear_folder)
+    except Exception as e:
+        return {
+            "response": "fail",
+            "error": str(e)
+        }
+    return "success"

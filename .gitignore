@@ -26,3 +26,5 @@ settings.ini
 __pycache__/speed_calculator.cpython-311.pyc
 __pycache__/stitch_horizontal.cpython-311.pyc
 __pycache__/utils.cpython-311.pyc
+/.venv
+.venv

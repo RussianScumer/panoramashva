@@ -83,26 +83,26 @@ def get_pano_for_slice(images, start, end, n, step):
             print(f'failed after {time_end} seconds, trying again')
 
 
-def stitch_unprocessed(video_name='1', how_to_stitch=True, step=1, overlap=5, num_to_stitch=10, every_count=100,
-                       need_to_clear_folder_unprocessed=False):
-    folder_path1 = 'frames/' + video_name
+def stitch_fromframesunprocessed(pathtoframes='1', how_to_stitch=True, step=1, overlap=5, num_to_stitch=10,
+                       need_to_clear_folder_unprocessed=False, what_flow = False):
+    folder_path1 = 'frames/' + pathtoframes
     folder_path = 'panos/'
-    if how_to_stitch:
-        overlap = num_to_stitch-1
+    ''' if how_to_stitch:
+        overlap = num_to_stitch-1 */ '''
     if need_to_clear_folder_unprocessed:
         delete_files_in_folder(folder_path1)
         delete_files_in_folder(folder_path)
     images = []
-    video_name = video_name + '.mp4'
-    vid_frames_folder = Path(path_to_frames, f'{video_name.split(".")[0]}')
+    '''pathtoframes = pathtoframes + '.mp4'
+    vid_frames_folder = Path(path_to_frames, f'{pathtoframes.split(".")[0]}')
     vid_frames_folder.mkdir(exist_ok=True, parents=True)
-    vid_path = Path(path_to_videos, video_name).as_posix()
-    save_frames_from_vid(vid_path, vid_frames_folder, evpath_to_videos = Path('./videos'))  # путь к папке с видео
-    what_flow = flowvideo(video_name)
+    vid_path = Path(path_to_videos, pathtoframes).as_posix()
+    save_frames_from_vid(vid_path, vid_frames_folder, every_count)  # Разбиваем видео на кадры
+    what_flow = flowvideo(pathtoframes)'''
     # Создаём список кадров, из которых надо сшить панораму
     # Очень важно отсортировать по номеру кадра, чтобы они шли подряд. Оригинальная сортировка делает это неправильно
     # (Например 3, 10, 2. Вместо 3, 2, 10)
-    for img_path in sorted(vid_frames_folder.glob('*.jpg'), key=lambda x: int(x.stem)):
+    for img_path in sorted(folder_path1.glob('*.jpg'), key=lambda x: int(x.stem)):
         img = cv2.imread(img_path.as_posix())
         if what_flow:
             img = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
@@ -126,12 +126,12 @@ def stitch_unprocessed(video_name='1', how_to_stitch=True, step=1, overlap=5, nu
             overlap = num_to_stitch
         if num_to_stitch < len(images) < num_to_stitch * 2:
             num_to_stitch = len(images) + num_to_stitch
+
         slices = find_slices(len(images), num_to_stitch, overlap)
         print(f'{len(slices)} slices')
         print(slices)
         print(len(images))
         params = [(images, start, end, n, step) for n, (start, end) in enumerate(slices)]
-        
         res = Parallel(n_jobs=12, temp_folder=temp_path)(delayed(get_pano_for_slice)(*param) for param in
                                   params)  # Параллельно склеиваем панорамы, чтоб не ждать долго. n_jobs под себя
         # настраиваем
@@ -140,11 +140,11 @@ def stitch_unprocessed(video_name='1', how_to_stitch=True, step=1, overlap=5, nu
         step += 1
         num_to_stitch = tmp_num_to_stitch
     print('Done')
- 
+
     # Здесь не очень хорошее решение с точки зрения архитектуры, но я не запаривался, а делал, чтоб побыстрее.
     # Надо просто повторить ещё одну склейку, но немного с другими параметрами
     if how_to_stitch:
-        combine_images_horizontally('panos', video_name, step - 1)
+        combine_images_horizontally('panos', pathtoframes, step - 1)
     else:
         stitcher_settings.update({'crop': True,
                                   # Из-за больших искажений, сшиватель просто не сможет найти общую область, поэтому
@@ -154,5 +154,5 @@ def stitch_unprocessed(video_name='1', how_to_stitch=True, step=1, overlap=5, nu
         # поэтому приходится делать сжатие, нельзя оставлять -3
 
         final_pano = get_pano_for_slice(images, start=0, end=len(images) + 3, n=0, step=999)
-        video_name_without_extension = video_name.replace(".mp4", "")
+        video_name_without_extension = pathtoframes.replace(".mp4", "")
         cv2.imwrite('results/' + video_name_without_extension + '.png', final_pano)
